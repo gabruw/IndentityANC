@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SHU Aeronáutica 01\\Source\\Repos\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {}
+    "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SHU Aeronáutica 01\\Source\\Repos\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {
+    "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SHU Aeronáutica 01\\Source\\Repos\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+        "projectUniqueName": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
         "projectName": "WebApp.Identity",
-        "projectPath": "C:\\Users\\SHU Aeronáutica 01\\Source\\Repos\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+        "projectPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
         "packagesPath": "C:\\Users\\SHU Aeronáutica 01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SHU Aeronáutica 01\\Source\\Repos\\SQL.Identity\\WebApp.Identity\\obj\\",
+        "outputPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
             }
           },
           "imports": [

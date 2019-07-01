@@ -1,4 +1,4 @@
-﻿namespace WebApp.Identity
+﻿namespace WebApp.Identity.Models
 {
     public class MyUser
     {

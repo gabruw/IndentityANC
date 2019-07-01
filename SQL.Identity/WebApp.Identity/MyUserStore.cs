@@ -1,24 +1,73 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using Dapper;
+using Microsoft.AspNetCore.Identity;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Identity.Models;
 
 namespace WebApp.Identity
 {
     public class MyUserStore : IUserStore<MyUser>
     {
-        public Task<IdentityResult> CreateAsync(MyUser user, CancellationToken cancellationToken)
+        // BASIC'S
+        public async Task<IdentityResult> CreateAsync(MyUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using (var connection = GetOpenConnection())
+            {
+                await connection.ExecuteAsync(
+                    "INSERT INTO Users([Id]," +
+                    "[UserName]," +
+                    "[NormalizedUserName]," +
+                    "[PasswordHash]) " +
+                    "Values(@id, @userName, @normalizedUserName, @passwordHash)",
+                    new
+                    {
+                        id = user.Id,
+                        userName = user.UserName,
+                        normalizedUserName = user.NormalizedUserName,
+                        passwordHash = user.PasswordHash
+                    });
+            }
+
+            return IdentityResult.Success;
         }
 
-        public Task<IdentityResult> DeleteAsync(MyUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(MyUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using (var connection = GetOpenConnection())
+            {
+                await connection.ExecuteAsync(
+                    "UPDATE Users([Id]," +
+                    "[UserName]," +
+                    "[NormalizedUserName]," +
+                    "[PasswordHash]) " +
+                    "Values(@id, @userName, @normalizedUserName, @passwordHash)",
+                    new
+                    {
+                        id = user.Id,
+                        userName = user.UserName,
+                        normalizedUserName = user.NormalizedUserName,
+                        passwordHash = user.PasswordHash
+                    });
+            }
+
+            return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> DeleteAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            using (var connection = GetOpenConnection())
+            {
+                await connection.ExecuteAsync(
+                    "DELETE FROM Users WHERE Id = @id",
+                    new
+                    {
+                        id = user.Id
+                    });
+            }
+
+            return IdentityResult.Success;
         }
 
         public void Dispose()
@@ -26,25 +75,42 @@ namespace WebApp.Identity
             
         }
 
+        // FIND'S
+        public async Task<MyUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        {
+            using (var connection = GetOpenConnection())
+            {
+                return await connection.QueryFirstOrDefault(
+                    "SELECT * FROM Users WHERE Id = @id",
+                    new { id = userId });
+            }
+        }
+
+        public async Task<MyUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        {
+            using (var connection = GetOpenConnection())
+            {
+                return await connection.QueryFirstOrDefault(
+                    "SELECT * FROM Users WHERE NormalizedUserName = @nome",
+                    new { nome = normalizedUserName });
+            }
+        }
+
+        // GET DATABASE
         public static DbConnection GetOpenConnection()
         {
-            var connection = new SqlConnection("");
+            var connection = new SqlConnection("Provider=SQLOLEDB.1;" +
+                                                "Integrated Security=SSPI;" +
+                                                "Persist Security Info=False;" +
+                                                "Initial Catalog=IdentityTest;" +
+                                                @"Data Source=SHU_01\SQLEXPRESS");
 
             connection.Open();
 
             return connection;
         }
 
-        public Task<MyUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<MyUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
+        // GET'S
         public Task<string> GetNormalizedUserNameAsync(MyUser user, CancellationToken cancellationToken)
         {
             return Task.FromResult(user.NormalizedUserName);
@@ -60,6 +126,7 @@ namespace WebApp.Identity
             return Task.FromResult(user.UserName);
         }
 
+        // SET'S
         public Task SetNormalizedUserNameAsync(MyUser user, string normalizedName, CancellationToken cancellationToken)
         {
             user.NormalizedUserName = normalizedName;
@@ -72,11 +139,6 @@ namespace WebApp.Identity
             user.UserName = userName;
 
             return Task.CompletedTask;
-        }
-
-        public Task<IdentityResult> UpdateAsync(MyUser user, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
         }
     }
 }
