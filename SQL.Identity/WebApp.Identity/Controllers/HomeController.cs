@@ -29,6 +29,23 @@ namespace WebApp.Identity.Controllers
         }
 
         [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(Login model)
+        {
+            if (ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Usuário ou sernha inválido!");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();

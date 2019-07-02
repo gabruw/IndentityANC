@@ -8,7 +8,7 @@ using WebApp.Identity.Models;
 
 namespace WebApp.Identity
 {
-    public class MyUserStore : IUserStore<MyUser>
+    public class MyUserStore : IUserStore<MyUser>, IUserPasswordStore<MyUser>
     {
         // BASIC'S
         public async Task<IdentityResult> CreateAsync(MyUser user, CancellationToken cancellationToken)
@@ -99,11 +99,17 @@ namespace WebApp.Identity
         // GET DATABASE
         public static DbConnection GetOpenConnection()
         {
+            //var connection = new SqlConnection("Provider=SQLOLEDB.1;" +
+            //                                    "Integrated Security=SSPI;" +
+            //                                    "Persist Security Info=False;" +
+            //                                    "Initial Catalog=IdentityTest;" +
+            //                                    @"Data Source=SHU_01\SQLEXPRESS");
+
             var connection = new SqlConnection("Provider=SQLOLEDB.1;" +
                                                 "Integrated Security=SSPI;" +
                                                 "Persist Security Info=False;" +
                                                 "Initial Catalog=IdentityTest;" +
-                                                @"Data Source=SHU_01\SQLEXPRESS");
+                                                @"Data Source=DESKTOP-HOAG8IV\SQLEXPRESS");
 
             connection.Open();
 
@@ -126,6 +132,11 @@ namespace WebApp.Identity
             return Task.FromResult(user.UserName);
         }
 
+        public Task<string> GetPasswordHashAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash);
+        }
+
         // SET'S
         public Task SetNormalizedUserNameAsync(MyUser user, string normalizedName, CancellationToken cancellationToken)
         {
@@ -139,6 +150,19 @@ namespace WebApp.Identity
             user.UserName = userName;
 
             return Task.CompletedTask;
+        }
+
+        public Task SetPasswordHashAsync(MyUser user, string passwordHash, CancellationToken cancellationToken)
+        {
+            user.PasswordHash = passwordHash;
+
+            return Task.CompletedTask;
+        }
+
+        // VALIDAÇÃO
+        public Task<bool> HasPasswordAsync(MyUser user, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(user.PasswordHash != null);
         }
     }
 }
