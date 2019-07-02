@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\snyp_\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {}
+    "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\snyp_\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {
+    "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\snyp_\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+        "projectUniqueName": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
         "projectName": "WebApp.Identity",
-        "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
-        "packagesPath": "C:\\Users\\snyp_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\snyp_\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\obj\\",
+        "projectPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\WebApp.Identity.csproj",
+        "packagesPath": "C:\\Users\\SHU Aeronáutica 01\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\IndentityANC\\SQL.Identity\\WebApp.Identity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\snyp_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\SHU Aeronáutica 01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.nuget.org/api/v2/curated-feeds/microsoftdotnet/": {}
         },
         "frameworks": {
           "netcoreapp2.2": {

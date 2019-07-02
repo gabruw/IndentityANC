@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Identity.Models;
@@ -39,7 +42,20 @@ namespace WebApp.Identity.Controllers
         {
             if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Usuário ou sernha inválido!");
+                var user = await _userManager.FindByNameAsync(model.UserName);
+
+                if(user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+                {
+                    var identity = new ClaimsIdentity("cookies");
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+
+                    await HttpContext.SignInAsync("cookies", new ClaimsPrincipal(identity));
+
+                    return RedirectToAction("About");
+                }
+
+                ModelState.AddModelError("", "Usuário ou senha inválido!");
             }
 
             return View();
@@ -72,6 +88,19 @@ namespace WebApp.Identity.Controllers
                 return View("Success");
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Success()
+        {
             return View();
         }
 

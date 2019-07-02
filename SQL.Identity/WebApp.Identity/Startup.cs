@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -35,10 +31,14 @@ namespace WebApp.Identity
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Adiciona o Identity
             services.AddIdentityCore<MyUser>(options => { });
 
             // Scope's
             services.AddScoped<IUserStore<MyUser>, MyUserStore>();
+
+            // Adiciona Autenticação por Cookies
+            services.AddAuthentication("cookies").AddCookie("cookies", options => options.LoginPath = "/Home/Login");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +52,9 @@ namespace WebApp.Identity
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            // Adiciona o uso de autenticação
+            app.UseAuthentication();
 
             app.UseStaticFiles();
             app.UseCookiePolicy();

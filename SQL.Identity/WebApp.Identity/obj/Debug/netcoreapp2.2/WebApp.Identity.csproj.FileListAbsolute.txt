@@ -83,3 +83,5 @@ C:\Users\snyp_\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\De
 C:\Users\snyp_\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.dll
 C:\Users\snyp_\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.pdb
 C:\Users\snyp_\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\WebApp.Identity.csproj.CopyComplete
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Login.g.cshtml.cs
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\IndentityANC\SQL.Identity\WebApp.Identity\obj\Debug\netcoreapp2.2\Razor\Views\Home\Success.g.cshtml.cs
